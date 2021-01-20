@@ -1,4 +1,5 @@
 on post-fs
+        setprop ro.phh.adb 1
 	exec - root -- /system/bin/vndk-detect
 	exec - root -- /system/bin/rw-system.sh
 	mount none /system/etc/usb_audio_policy_configuration.xml /vendor/etc/usb_audio_policy_configuration.xml bind
@@ -19,6 +20,7 @@ on property:sys.boot_completed=1
     start phh_on_boot
     chown wifi system /data/misc/wifi
     chown system wifi /data/misc/wifi/hostapd.conf
+    setprop ro.phh.adb 0
 
 on property:persist.sys.phh.mainkeys=*
     setprop qemu.hw.mainkeys ${persist.sys.phh.mainkeys}

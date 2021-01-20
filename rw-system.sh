@@ -10,7 +10,8 @@ else
     chmod 0644 /cache/phh/logs
 fi
 
-if [ -f /cache/phh-adb ];then
+phh_adb="$(getprop ro.phh.adb)"
+if [ "$phh_adb" = 1 ];then
     setprop ctl.stop adbd
     setprop ctl.stop adbd_apex
     mount -t configfs none /config
